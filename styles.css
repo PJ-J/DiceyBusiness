@@ -1,0 +1,13 @@
+.die {
+  width: 120px;
+  height: 120px;
+  /* background: black; */
+  border: solid 3px black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#dieDiv {
+  display: flex;
+}
