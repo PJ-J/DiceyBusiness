@@ -16,8 +16,12 @@ document.getElementById("btn").addEventListener("click", addSquareDiv);
 
 class Die {
   constructor() {
-    }
-    roll() {
-
-    }
+    
+  }
+  roll() {
+    this.value = Math.floor(Math.random() * 6);
+    console.log(this.value);
+  }
 }
+let d1 = new Die;
+d1.roll();
