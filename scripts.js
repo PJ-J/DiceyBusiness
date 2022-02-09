@@ -1,27 +1,38 @@
-let i = 1;
+let j = 1;
 
-let addSquareDiv = () => {
+let dieArr = [];
+
+let addDie = () => {
   let squareDiv = document.createElement("div");
   squareDiv.className = "die";
+  squareDiv.id = `die${j}`;
   document.getElementById("dieDiv").appendChild(squareDiv);
-  squareDiv.id = i;
   let squarep = document.createElement("p");
-  let squaretext = document.createTextNode(i);
-  squarep.appendChild(squaretext);
-  squareDiv.appendChild(squarep);
+  class Die {
+    constructor() {}
+    roll() {
+      this.value = Math.floor(Math.random() * 6) + 1;
+
+      
+      let squaretext = document.createTextNode(this.value);
+      squarep.appendChild(squaretext);
+      squareDiv.appendChild(squarep);
+      // console.log(this.value);
+
+      // squareDiv.id = i;
+
+      
+    }
+  }
+  
+  let i = new Die();
+  i.key = j;
+  i.roll();
+  dieArr.push(i);
+  console.log(dieArr);
+  j++;
   i++;
 };
 
-document.getElementById("btn").addEventListener("click", addSquareDiv);
-
-class Die {
-  constructor() {
-    
-  }
-  roll() {
-    this.value = Math.floor(Math.random() * 6);
-    console.log(this.value);
-  }
-}
-let d1 = new Die;
-d1.roll();
+document.getElementById("genBtn").addEventListener("click", addDie);
+document.getElementById("rollBtn").addEventListener("click", addDie);
