@@ -1,6 +1,7 @@
 let j = 1;
 
 let dieArr = [];
+let sum = 0;
 
 let addDie = () => {
   let squareDiv = document.createElement("div");
@@ -40,4 +41,14 @@ document.getElementById("rollBtn").addEventListener("click", function() {
   for (let k = 0; k < dieArr.length; k++) {
     dieArr[k].roll();
   }
+});
+
+document.getElementById("sumDice").addEventListener("click", function() {
+  for (let k = 0; k < dieArr.length; k++) {
+    
+    sum += dieArr[k].value;
+    console.log(sum);
+  }
+  alert(`the sum is ${sum}.`);
+  sum = 0;
 });
