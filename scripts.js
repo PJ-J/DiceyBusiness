@@ -6,7 +6,7 @@ let sum = 0;
 let addDie = () => {
   let squareDiv = document.createElement("div");
   squareDiv.className = "die";
-  squareDiv.id = `die${j}`;
+  squareDiv.id = j;
   document.getElementById("dieDiv").appendChild(squareDiv);
   let squarep = document.createElement("p");
   squareDiv.appendChild(squarep);
@@ -15,7 +15,7 @@ let addDie = () => {
     roll() {
       this.value = Math.floor(Math.random() * 6) + 1;
 
-      let squaretext = document.createTextNode(this.value);
+      document.createTextNode(this.value);
       squarep.innerText = this.value;
 
       // console.log(this.value);
@@ -47,3 +47,10 @@ document.getElementById("sumDice").addEventListener("click", function () {
   alert(`the sum is ${sum}.`);
   sum = 0;
 });
+
+document.body.addEventListener("click", function(event) {
+  if (event.target.className === "die") {
+    dieArr[event.target.id-1].roll();
+  }
+});
+
