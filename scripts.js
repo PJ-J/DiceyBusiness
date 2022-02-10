@@ -15,18 +15,15 @@ let addDie = () => {
     roll() {
       this.value = Math.floor(Math.random() * 6) + 1;
 
-      
       let squaretext = document.createTextNode(this.value);
       squarep.innerText = this.value;
-      
+
       // console.log(this.value);
 
       // squareDiv.id = i;
-
-      
     }
   }
-  
+
   let i = new Die();
   i.key = j;
   i.roll();
@@ -37,17 +34,15 @@ let addDie = () => {
 };
 
 document.getElementById("genBtn").addEventListener("click", addDie);
-document.getElementById("rollBtn").addEventListener("click", function() {
+document.getElementById("rollBtn").addEventListener("click", function () {
   for (let k = 0; k < dieArr.length; k++) {
     dieArr[k].roll();
   }
 });
 
-document.getElementById("sumDice").addEventListener("click", function() {
+document.getElementById("sumDice").addEventListener("click", function () {
   for (let k = 0; k < dieArr.length; k++) {
-    
     sum += dieArr[k].value;
-    console.log(sum);
   }
   alert(`the sum is ${sum}.`);
   sum = 0;
