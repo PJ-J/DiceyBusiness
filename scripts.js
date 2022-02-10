@@ -8,6 +8,7 @@ let addDie = () => {
   squareDiv.id = `die${j}`;
   document.getElementById("dieDiv").appendChild(squareDiv);
   let squarep = document.createElement("p");
+  squareDiv.appendChild(squarep);
   class Die {
     constructor() {}
     roll() {
@@ -15,8 +16,8 @@ let addDie = () => {
 
       
       let squaretext = document.createTextNode(this.value);
-      squarep.appendChild(squaretext);
-      squareDiv.appendChild(squarep);
+      squarep.innerText = this.value;
+      
       // console.log(this.value);
 
       // squareDiv.id = i;
@@ -35,4 +36,8 @@ let addDie = () => {
 };
 
 document.getElementById("genBtn").addEventListener("click", addDie);
-document.getElementById("rollBtn").addEventListener("click", addDie);
+document.getElementById("rollBtn").addEventListener("click", function() {
+  for (let k = 0; k < dieArr.length; k++) {
+    dieArr[k].roll();
+  }
+});
