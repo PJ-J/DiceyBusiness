@@ -15,9 +15,10 @@ let addDie = () => {
     roll() {
       this.value = Math.floor(Math.random() * 6) + 1;
 
-      document.createTextNode(this.value);
+      // document.createTextNode(this.value);
       squarep.innerText = this.value;
-
+      Die.value = this.value;
+      
       // console.log(this.value);
 
       // squareDiv.id = i;
@@ -36,8 +37,9 @@ let addDie = () => {
 document.getElementById("genBtn").addEventListener("click", addDie);
 document.getElementById("rollBtn").addEventListener("click", function () {
   for (let k = 0; k < dieArr.length; k++) {
-    dieArr[k].roll();
+    dieArr[k].roll();    
   }
+  console.log(dieArr);
 });
 
 document.getElementById("sumDice").addEventListener("click", function () {
@@ -50,7 +52,17 @@ document.getElementById("sumDice").addEventListener("click", function () {
 
 document.body.addEventListener("click", function(event) {
   if (event.target.className === "die") {
-    dieArr[event.target.id-1].roll();
+    dieArr[event.target.id -1].roll();
+    
+  }
+});
+
+document.body.addEventListener("dblclick", function(event) {
+  if (event.target.className === "die") {
+    let remove = document.getElementById(event.target.id);
+    remove.remove()
+    dieArr.splice(dieArr.indexOf(event.target), 1);
+    console.log(dieArr);
   }
 });
 
