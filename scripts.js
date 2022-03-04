@@ -6,13 +6,18 @@ let sum = 0;
 let addDie = () => {
   let squareDiv = document.createElement("div");
   squareDiv.className = "die";
-  for (let l = 0; l < dieArr.length +1; l++) {
+  squareDiv.addEventListener("click", (e) => {
+    console.log(e.target.id)
+    // dieArr[e.target.id].roll();
+    console.log(dieArr[e.target.id])
+  })
+  for (let l = 0; l < dieArr.length + 1; l++) {
     if (!dieArr) {
       squareDiv.id = l;
     }
     squareDiv.id = l;
   }
-  // squareDiv.id = j;
+
   document.getElementById("dieDiv").appendChild(squareDiv);
   let squarep = document.createElement("p");
   squareDiv.appendChild(squarep);
@@ -21,48 +26,62 @@ let addDie = () => {
     roll() {
       this.value = Math.floor(Math.random() * 6) + 1;
 
-      // document.createTextNode(this.value);
-      squarep.innerText = this.value;
-      Die.value = this.value;
-
-      // console.log(this.value);
-
-      // squareDiv.id = i;
+      switch (this.value) {
+        case 1:
+          squarep.innerHTML = "&#9856";
+          Die.value = this.value;
+          break;
+        case 2:
+          squarep.innerHTML = "&#9857";
+          Die.value = this.value;
+          break;
+        case 3:
+          squarep.innerHTML = "&#9858";
+          Die.value = this.value;
+          break;
+        case 4:
+          squarep.innerHTML = "&#9859";
+          Die.value = this.value;
+          break;
+        case 5:
+          squarep.innerHTML = "&#9860";
+          Die.value = this.value;
+          break;
+        case 6:
+          squarep.innerHTML = "&#9861";
+          Die.value = this.value;
+          break;
+        default:
+      }
     }
   }
 
-  let i = new Die();
-  i.key = j;
-  i.roll();
-  dieArr.push(i);
+  let d1 = new Die();
+  d1.key = j;
+  d1.roll();
+  dieArr.push(d1);
   console.log(dieArr);
   j++;
-  i++;
 };
 
 document.getElementById("genBtn").addEventListener("click", addDie);
 document.getElementById("rollBtn").addEventListener("click", function () {
-  for (let k = 0; k < dieArr.length; k++) {
-    dieArr[k].roll();
-  }
-  console.log(dieArr);
+  dieArr.forEach((die) => {
+    die.roll();
+  });
 });
 
 document.getElementById("sumDice").addEventListener("click", function () {
-  for (let k = 0; k < dieArr.length; k++) {
-    console.log(dieArr[k].value)
-    sum += dieArr[k].value;
-  }
+  dieArr.forEach((die) => {
+    console.log(die.value);
+    sum += die.value;
+  });
+
   alert(`the sum is ${sum}.`);
   sum = 0;
 });
 
-document.body.addEventListener("click", function (event) {
-  if (event.target.className === "die") {
-    console.log(event.target.id);
-    dieArr[event.target.id].roll();
-  }
-});
+
 
 document.body.addEventListener("dblclick", function (event) {
   if (event.target.className === "die") {
