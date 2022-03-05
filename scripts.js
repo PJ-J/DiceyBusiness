@@ -2,15 +2,23 @@ let j = 1;
 
 let dieArr = [];
 let sum = 0;
+let newIndex = 0;
 
 let addDie = () => {
   let squareDiv = document.createElement("div");
   squareDiv.className = "die";
   squareDiv.addEventListener("click", (e) => {
-    console.log(e.target.id)
-    // dieArr[e.target.id].roll();
-    console.log(dieArr[e.target.id])
-  })
+    dieArr[e.target.id].roll();    
+  });
+  squareDiv.addEventListener("dblclick", (e) => {
+    let remove = document.getElementById(e.target.id);
+    remove.remove();
+    dieArr.splice(dieArr.indexOf(e.target), 1);
+   for (let z = 0; z < dieArr.length; z++) {
+     dieArr[z].id = z;     
+   }
+   console.log(dieArr)
+  });
   for (let l = 0; l < dieArr.length + 1; l++) {
     if (!dieArr) {
       squareDiv.id = l;
@@ -57,10 +65,10 @@ let addDie = () => {
   }
 
   let d1 = new Die();
-  d1.key = j;
+  // d1.key = j;
   d1.roll();
   dieArr.push(d1);
-  console.log(dieArr);
+
   j++;
 };
 
@@ -73,21 +81,9 @@ document.getElementById("rollBtn").addEventListener("click", function () {
 
 document.getElementById("sumDice").addEventListener("click", function () {
   dieArr.forEach((die) => {
-    console.log(die.value);
     sum += die.value;
   });
 
   alert(`the sum is ${sum}.`);
   sum = 0;
-});
-
-
-
-document.body.addEventListener("dblclick", function (event) {
-  if (event.target.className === "die") {
-    let remove = document.getElementById(event.target.id);
-    remove.remove();
-    dieArr.splice(dieArr.indexOf(event.target), 1);
-    console.log(dieArr);
-  }
 });
