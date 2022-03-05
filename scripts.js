@@ -2,7 +2,6 @@ let j = 1;
 
 let dieArr = [];
 let sum = 0;
-let newIndex = 0;
 
 let addDie = () => {
   let squareDiv = document.createElement("div");
