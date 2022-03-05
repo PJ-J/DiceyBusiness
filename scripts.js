@@ -1,5 +1,3 @@
-let j = 1;
-
 let dieArr = [];
 let sum = 0;
 
@@ -7,16 +5,21 @@ let addDie = () => {
   let squareDiv = document.createElement("div");
   squareDiv.className = "die";
   squareDiv.addEventListener("click", (e) => {
-    dieArr[e.target.id].roll();    
+    dieArr[e.target.id].roll();
   });
   squareDiv.addEventListener("dblclick", (e) => {
+    let val = dieArr[e.target.id].value;
+    dieArr.splice(
+      dieArr.findIndex((item) => item.value == val),
+      1
+    );
     let remove = document.getElementById(e.target.id);
     remove.remove();
-    dieArr.splice(dieArr.indexOf(e.target), 1);
-   for (let z = 0; z < dieArr.length; z++) {
-     dieArr[z].id = z;     
-   }
-   console.log(dieArr)
+
+    for (let z = 0; z < dieArr.length; z++) {
+      dieArr[z].id = z;
+      document.getElementsByClassName("die")[z].id = z;
+    }
   });
   for (let l = 0; l < dieArr.length + 1; l++) {
     if (!dieArr) {
@@ -64,11 +67,9 @@ let addDie = () => {
   }
 
   let d1 = new Die();
-  // d1.key = j;
+
   d1.roll();
   dieArr.push(d1);
-
-  j++;
 };
 
 document.getElementById("genBtn").addEventListener("click", addDie);
